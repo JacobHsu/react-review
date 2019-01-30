@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import App from './components/App';
 //import * as serviceWorker from './serviceWorker'; //支持PWA(Progressive Web App)特性用
 
 ReactDOM.render(<App />, document.getElementById('root'));
