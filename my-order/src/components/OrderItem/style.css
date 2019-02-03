@@ -32,14 +32,14 @@
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-.orderItem__stop {
-    text-align: left;
+.orderItem__star {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-size: 13px;
+    font-size: 15px;
     color: #777;
     padding-top: 9px;
+    padding-right: 18px;
     padding-bottom: 13px;
 }
 .orderItem__detail {

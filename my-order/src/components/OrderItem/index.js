@@ -6,12 +6,12 @@ class index extends Component {
     super(props);
     this.state = {
       editing: false,
-      stars: 0,
-      comment: ''
+      stars: props.data.stars || 0,
+      comment: props.data.comment || ''
     };
   }
   render() {
-    const { shop, product, price, picture, ifCommented } = this.props.data;
+    const { product, picture, ifCommented } = this.props.data;
     return (
       <div className="orderItem">
         <div className="orderItem__picContainer--red">
@@ -19,9 +19,9 @@ class index extends Component {
         </div>
         <div className="orderItem__content">
           <div className="orderItem__product">{product}</div>
-          <div className="orderItem__shop">{shop}</div>
+          <div className="orderItem__star">{this.renderStars()}</div>
+          
           <div className="orderItem__detail">
-            <div classNmae="orderItem__price">NT{price}</div>
             <div className="orderItem__buttom">
               {ifCommented ? (
                 <button className="orderItem__btn orderItem__btn--grey">
@@ -52,7 +52,7 @@ class index extends Component {
           value={this.state.comment}
         />
         {this.renderStars()}
-        <button className="orderItem__btn orderItem__btn--red">提交</button>
+        <button className="orderItem__btn orderItem__btn--red"  onClick={this.handeleSubmitComment}>提交</button>
         <button className="orderItem__btn orderItem__btn--grey" onClick={this.handeleCancelComment}>取消</button>
       </div>
     );
@@ -100,9 +100,18 @@ class index extends Component {
   handeleCancelComment = () => {
     this.setState({
       editing: false,
-      comment:'',
-      stars: 0
+      stars: this.props.data.stars || 0,
+      comment: this.props.data.comment || ''
     });
+  };
+
+  handeleSubmitComment = () => {
+    const {id} = this.props.data;
+    const {comment, stars} = this.state;
+    this.setState({
+        editing: false,
+    })
+    this.props.onSubmit(id, comment, stars);
   };
 }
 
